@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,12 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a === b && a === c) return a;
+  if (a > b && a > c) return a;
+  if (b > a && b > c) return b;
+  if (c > a && c > b) return c;
+  return 0;
 }
 
 /**
@@ -82,8 +86,13 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) return false;
+
+  if (a + b >= c && b + c >= a && a + c >= b) {
+    return a === b || b === c || a === c;
+  }
+  return false;
 }
 
 /**
@@ -100,8 +109,28 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let num1 = num;
+  let result = '';
+  while (num1 > 0) {
+    if (num1 >= 10) {
+      result += 'X';
+      num1 -= 10;
+    } else if (num1 >= 9) {
+      result += 'IX';
+      num1 -= 9;
+    } else if (num1 >= 5) {
+      result += 'V';
+      num1 -= 5;
+    } else if (num1 >= 4) {
+      result += 'IV';
+      num1 -= 4;
+    } else {
+      result += 'I';
+      num1 -= 1;
+    }
+  }
+  return result;
 }
 
 /**
@@ -153,8 +182,11 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) return i;
+  }
+  return -1;
 }
 
 /**
@@ -172,8 +204,14 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let numTmp = num;
+  while (numTmp > 0) {
+    const numDigit = numTmp % 10;
+    if (numDigit === digit) return true;
+    numTmp = Math.trunc(numTmp / 10);
+  }
+  return false;
 }
 
 /**
